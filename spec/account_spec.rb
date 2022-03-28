@@ -7,12 +7,12 @@ describe Account do
     expect(account.balance).to eq Account::DEFAULT_BALANCE
   end
 
-  describe '#transactions' do
-    it 'can make a transaction' do
-      account.deposit(1000)
-      expect(account.view_transactions.length).to be 1
-    end
-  end
+#   describe '#transactions' do
+#     it 'can make a transaction' do
+#       account.deposit(1000)
+#       expect(account.view_transactions.length).to be 1
+#     end
+#   end
 
   describe '#deposit' do
     it { is_expected.to respond_to(:deposit).with(1).argument }
@@ -44,5 +44,10 @@ describe Account do
       account.withdrawal(100)
       expect(account.balance).to be -100
     end
+
+    # it 'raises an error if user attempts to withdraw more than current balance' do
+    #   minimum_balance = Account::DEFAULT_BALANCE
+    #   expect{ account.withdrawal(amount) }.to raise_error "Insufficient funds for withdrawal - balance below #{balance}"
+    # end
   end
 end

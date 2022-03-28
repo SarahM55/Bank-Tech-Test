@@ -5,21 +5,21 @@ class Account
 
     def initialize(balance = DEFAULT_BALANCE)
       @balance = balance
-      @transactions = []
+    #   @transactions = []
     end
 
     def deposit(amount)
       @balance += amount
-      @transactions << @balance
+    #   @transactions << @balance
     end
 
     def withdrawal(amount)
       @balance -= amount
-      @transactions << @balance
+    #   @transactions << @balance
     end
 
-    def view_transactions
-      @transactions
-    end
+    # def view_transactions
+    #   @transactions
+    # end
 
 end
