@@ -5,6 +5,11 @@ class Account
 
     def initialize(balance = DEFAULT_BALANCE)
       @balance = balance
+      @account = []
+    end
+
+    def deposit(amount)
+      @account << @balance += amount
     end
 
 end
