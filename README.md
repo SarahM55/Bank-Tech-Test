@@ -40,3 +40,6 @@ As a customer,
 So that I can check my account balance,
 I'd like to print a bank statement which shows the date, amount, balance
 ```
+
+## Diagram
+![](2022-03-28-12-36-22.png)
