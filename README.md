@@ -45,3 +45,4 @@ I'd like to print a bank statement which shows the date, amount, balance
 ![](Diagram.png)
 
 ## IRB Transcript
+![](irb-demo.png)
