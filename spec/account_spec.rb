@@ -1,4 +1,4 @@
-require_relative '../lib/account.rb'
+require_relative '../lib/account'
 
 describe Account do
   let(:account) { Account.new }
@@ -8,14 +8,14 @@ describe Account do
   end
 
   it 'returns the users balance' do
-    expect(account.get_balance).to be 0
+    expect(account.show_balance).to be 0
   end
 
   describe '#deposit' do
     it { is_expected.to respond_to(:deposit).with(1).argument }
 
     it 'can make a deposit to increase the balance' do
-      expect { account.deposit 1 }.to change{ account.balance }.by 1
+      expect { account.deposit 1 }.to change { account.balance }.by 1
     end
 
     it 'should have a balance of 500 after depositing 500' do
@@ -35,7 +35,7 @@ describe Account do
 
     it 'can make a withdrawal to decrease the balance' do
       account.deposit(1000, '29/03/2022')
-      expect { account.withdrawal 1 }.to change{ account.balance }.by -1
+      expect { account.withdrawal 1 }.to change { account.balance }.by -1
     end
 
     it 'can make a withdrawl of 50, with previous deposit of 100, leaving balance of 50' do

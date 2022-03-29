@@ -1,5 +1,5 @@
-require_relative '../lib/account.rb'
-require_relative '../lib/statement.rb'
+require_relative '../lib/account'
+require_relative '../lib/statement'
 
 describe Statement do
   let(:account) { instance_double('account', header: 'date || credit || debit || balance', transactions: []) }

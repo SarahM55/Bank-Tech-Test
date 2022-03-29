@@ -1,4 +1,4 @@
-require_relative '../lib/account.rb'
+require_relative '../lib/account'
 
 class Statement
 
