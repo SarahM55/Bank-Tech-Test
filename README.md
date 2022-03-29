@@ -2,6 +2,20 @@
 
 A practice tech test which simulates the functionality of a bank account.
 
+## Installation
+
+Clone this repository and install gems with bundler
+```
+$> bundle install 
+```
+
+## Testing
+
+To run rspec tests
+```
+$> rspec
+```
+
 ## Specification
 
 ### Requirements
