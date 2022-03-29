@@ -7,12 +7,9 @@ describe Account do
     expect(account.balance).to eq Account::STARTING_BALANCE
   end
 
-#   describe '#transactions' do
-#     it 'can make a transaction' do
-#       account.deposit(1000)
-#       expect(account.view_transactions.length).to be 1
-#     end
-#   end
+  it 'returns the users balance' do
+    expect(account.get_balance).to be 0
+  end
 
   describe '#deposit' do
     it { is_expected.to respond_to(:deposit).with(1).argument }
@@ -22,13 +19,13 @@ describe Account do
     end
 
     it 'should have a balance of 500 after depositing 500' do
-      account.deposit(500)
+      account.deposit(500, '29/03/2022')
       expect(account.balance).to be 500
     end
 
     it 'should have a balance of 1500 after depositing 500 then 1000' do
-      account.deposit(500)
-      account.deposit(1000)
+      account.deposit(500, '29/03/2022')
+      account.deposit(1000, '29/03/2022')
       expect(account.balance).to be 1500
     end
   end
@@ -37,12 +34,19 @@ describe Account do
     it { is_expected.to respond_to(:withdrawal).with(1).argument }
 
     it 'can make a withdrawal to decrease the balance' do
+      account.deposit(1000, '29/03/2022')
       expect { account.withdrawal 1 }.to change{ account.balance }.by -1
     end
 
+    it 'can make a withdrawl of 50, with previous deposit of 100, leaving balance of 50' do
+      account.deposit(100, '01/01/2022')
+      account.withdrawal(50, '02/01/2022')
+      expect(account.balance).to be 50
+    end
+
     it 'raises an error if user attempts to withdraw more than current balance' do
-      account.deposit(1000)
-      expect { account.withdrawal(1500) }.to raise_error 'Insufficient funds for withdrawal'
+      account.deposit(1000, '29/03/2022')
+      expect { account.withdrawal(1500, '29/03/2022') }.to raise_error 'Insufficient funds for withdrawal'
     end
   end
 end
