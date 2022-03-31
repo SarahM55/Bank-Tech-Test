@@ -2,13 +2,16 @@ require_relative '../lib/account'
 require_relative '../lib/statement'
 
 describe Statement do
-  let(:account) { instance_double('account', header: 'date || credit || debit || balance', transactions: []) }
+  before(:each) do
+    @account = Account.new
+  end
 
-  context 'it allows a customer to print a statement' do
+  it 'prints statement in the correct format' do
+    expect { subject.print('date || credit || debit || balance') }.to output("date || credit || debit || balance\n").to_stdout
+  end
 
-    it 'prints statement in a formated string: "date || credit || debit || balance"' do
-      statement = Statement.new(account)
-      expect(statement.print_statement).to include 'date || credit || debit || balance'
-    end
+  it 'should include the value of a deposit, type of transaction, and resulting balance' do
+    @account.deposit(50)
+    expect { @account.generate_statement }.to output("date || credit || debit || balance\n31/03/2022 || 50 || || 50\n").to_stdout
   end
 end

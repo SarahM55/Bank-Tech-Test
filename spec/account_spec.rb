@@ -7,10 +7,6 @@ describe Account do
     expect(account.balance).to eq Account::STARTING_BALANCE
   end
 
-  it 'returns the users balance' do
-    expect(account.show_balance).to be 0
-  end
-
   describe '#deposit' do
     it { is_expected.to respond_to(:deposit).with(1).argument }
 
@@ -34,7 +30,7 @@ describe Account do
     it { is_expected.to respond_to(:withdrawal).with(1).argument }
 
     it 'can make a withdrawal to decrease the balance' do
-      account.deposit(1000, '29/03/2022')
+      account.deposit(1000, '31/03/2022')
       expect { account.withdrawal 1 }.to change { account.balance }.by -1
     end
 
@@ -45,8 +41,19 @@ describe Account do
     end
 
     it 'raises an error if user attempts to withdraw more than current balance' do
-      account.deposit(1000, '29/03/2022')
-      expect { account.withdrawal(1500, '29/03/2022') }.to raise_error 'Insufficient funds for withdrawal'
+      account.deposit(1000, '31/03/2022')
+      expect { account.withdrawal(1500, '31/03/2022') }.to raise_error 'Insufficient funds for withdrawal'
+    end
+  end
+
+  describe '#bank_statement' do
+    it 'uses the statement class' do
+      statement = double(:statement)
+      statement_class = double(:statement_class, new: statement)
+      subject = described_class.new(statement_class: statement_class)
+
+      expect(statement).to receive(:print).twice
+      subject.generate_statement
     end
   end
 end
